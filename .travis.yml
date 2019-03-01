@@ -2,8 +2,20 @@ sudo: required
 services:
   - docker
 
+before_script:
+  - docker pull wiseteam/wykoplaner-backend || true
+
 script:
-  - docker build . -f ./Dockerfile.production -t bgornicki/wykoplaner-backend
+  - docker build --pull --cache-from myorg/myimage . -f ./Dockerfile.production -t wiseteam/wykoplaner-backend
 
 after_script:
   - docker images
+
+before_deploy:
+  - docker login -u "$HUB_USERNAME" -p "$HUB_PASSWORD"
+
+deploy:
+  provider: script
+  script: docker push wiseteam/wykoplaner-backend
+  on:
+    branch: master
