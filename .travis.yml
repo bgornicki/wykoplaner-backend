@@ -3,7 +3,7 @@ services:
   - docker
 
 script:
-  - docker build -f ./Dockerfile.production -t bgornicki/wykoplaner-backend
+  - docker build . -f ./Dockerfile.production -t bgornicki/wykoplaner-backend
 
 after_script:
   - docker images
