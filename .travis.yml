@@ -3,10 +3,11 @@ services:
   - docker
 
 before_script:
-  - docker pull wiseteam/wykoplaner-backend || true
+  - docker pull wiseteam/wykoplaner-backend || true # true to not fail if repository is empty
+  - git submodule update --init --remote
 
 script:
-  - docker build --pull --cache-from myorg/myimage . -f ./Dockerfile.production -t wiseteam/wykoplaner-backend
+  - docker build --pull --cache-from wiseteam/wykoplaner-backend . -f ./Dockerfile.production -t wiseteam/wykoplaner-backend
 
 after_script:
   - docker images

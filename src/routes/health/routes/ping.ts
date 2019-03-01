@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { handleResponseError } from '../../../utils/handleResponseError';
+import { handleResponseError } from '../../../submodules/engrave-shared/hof/handleResponseError';
 import * as os from 'os';
 
 const middleware: any[] =  [
